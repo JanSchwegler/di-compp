@@ -1,0 +1,126 @@
+@font-face {
+    font-family: Lexend;
+    src: url(Lexend-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: Lexend Peta;
+    src: url(LexendPeta-VariableFont_wght.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Colors */
+:root {
+    --background: hsl(120, 10%, 10%);
+    --background-light: hsl(120, 3%, 20%);
+    --font: hsl(120, 10%, 90%);
+    --font-light: hsl(120, 3%, 60%);
+}
+
+/* Reset */
+body, h1, h2, h3, h4, h5, h6, p, span, a, ul, ol, li, div, main, section, article, figure, figcaption, img {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Font */
+h1, h2, h3, h4, h5, h6, p, a, span, section, main, div, li, figcaption {
+    font-family: Lexend, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--font);
+}
+
+h1, h2 {
+    font-family: Lexend Peta, sans-serif;
+    font-weight: 900;
+}
+
+/* General */
+body {
+    background-color: var(--background);
+}
+
+section {
+    min-height: 100vh;
+    position: relative;
+    padding: 50px 5vw;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    z-index: 100;
+}
+
+nav div {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: var(--font-light);
+    transition: 0.4s;
+}
+
+nav div#selection {
+    position: absolute;
+    top: 0;
+    left: 25vw;
+    width: 100px;
+    height: 40px;
+    background-color: var(--font-light);
+    border-radius: 20px;
+    z-index: -1;
+    cursor: inherit;
+}
+
+/* Content */
+section h1 {
+    font-size: 7.5vw;
+    position: absolute;
+    left: 5vw;
+    bottom: 20vh;
+}
+
+section:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+section p.center-paragraph {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 10vw 80px;
+}
+
+section.unknown-life, footer {
+    background-color: var(--background-light);
+    border-radius: 30px;
+}
+
+footer {
+    border-radius: 30px 30px 0 0;
+    padding: 30px 5vw 30px;
+    min-height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}

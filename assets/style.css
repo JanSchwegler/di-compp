@@ -15,7 +15,7 @@
 :root {
     --background: hsl(120, 10%, 10%);
     --background-light: hsl(120, 3%, 20%);
-    --font: hsl(120, 10%, 90%);
+    --font: hsl(120, 5%, 75%);
     --font-light: hsl(120, 3%, 60%);
 }
 
@@ -67,7 +67,6 @@ nav {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    gap: 10px;
     z-index: 100;
 }
 
@@ -78,16 +77,21 @@ nav div {
     transition: 0.4s;
 }
 
+nav div:nth-child(1) {
+    color: var(--background);
+}
+
 nav div#selection {
     position: absolute;
     top: 0;
-    left: 25vw;
+    left: 40vw;
     width: 100px;
     height: 40px;
     background-color: var(--font-light);
     border-radius: 20px;
     z-index: -1;
     cursor: inherit;
+    opacity: 0;
 }
 
 /* Content */
@@ -123,4 +127,8 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     font-size: 0.8rem;
+}
+
+footer p {
+    color: var(--font-light);
 }

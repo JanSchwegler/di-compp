@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Randomize Pixels with Transition</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .canvas-container {
+        position: relative;
+        width: 800px; /* Adjust according to your image size */
+        height: auto; /* Adjust according to your image size */
+        overflow: hidden;
+        border-radius: 30px;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: center;
+        animation: zoom 3s steps(10) forwards, unblur 3s steps(10) forwards;
+      }
+
+      @keyframes unblur {
+        0% {
+          filter: blur(3px);
+        }
+        50% {
+          filter: blur(1px);
+        }
+        100% {
+          filter: blur(0px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas-container">
+      <canvas id="canvas"></canvas>
+    </div>
+    <script>
+      var img = new Image();
+      img.onload = function () {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img, 0, 0);
+
+        var originalImageData = ctx.getImageData( 0, 0, canvas.width, canvas.height);
+        var originalData = originalImageData.data;
+
+        var randomizedPixels = Array.from(originalData);
+        var indices = [];
+        for (let i = 0; i < originalData.length / 4; i++) {
+          indices.push(i);
+        }
+
+        // Shuffle indices
+        function shuffle(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
+        shuffle(indices);
+
+        // Randomize the pixel positions based on shuffled indices
+        var randomizedData = new Uint8ClampedArray(originalData.length);
+        for (let i = 0; i < indices.length; i++) {
+          var srcIdx = indices[i] * 4;
+          var destIdx = i * 4;
+          randomizedData[destIdx] = originalData[srcIdx];
+          randomizedData[destIdx + 1] = originalData[srcIdx + 1];
+          randomizedData[destIdx + 2] = originalData[srcIdx + 2];
+          randomizedData[destIdx + 3] = originalData[srcIdx + 3];
+        }
+
+        // Put the randomized pixels on the canvas
+        ctx.putImageData(new ImageData(randomizedData, canvas.width, canvas.height), 0, 0);
+
+        // Transition function to gradually sort pixels back to the original
+        function transitionPixels(duration) {
+          var startTime = Date.now();
+          var totalPixels = indices.length;
+
+          function transition() {
+            var elapsedTime = Date.now() - startTime;
+            var progress = Math.min(1, elapsedTime / duration);
+            var numPixelsToSort = Math.floor(progress * totalPixels);
+
+            // Copy a sorted subset of the pixels back to their original positions
+            for (let i = 0; i < numPixelsToSort; i++) {
+              var sortedIdx = indices[i] * 4;
+              var destIdx = indices[i] * 4;
+              randomizedData[destIdx] = originalData[sortedIdx];
+              randomizedData[destIdx + 1] = originalData[sortedIdx + 1];
+              randomizedData[destIdx + 2] = originalData[sortedIdx + 2];
+              randomizedData[destIdx + 3] = originalData[sortedIdx + 3];
+            }
+
+            ctx.putImageData(
+              new ImageData(randomizedData, canvas.width, canvas.height),
+              0,
+              0
+            );
+
+            if (progress < 1) {
+              requestAnimationFrame(transition);
+            }
+          }
+
+          requestAnimationFrame(transition);
+        }
+
+        transitionPixels(3000); // 3 seconds
+      };
+
+      img.src = "image.jpg"; // Replace with your image path
+    </script>
+  </body>
+</html>

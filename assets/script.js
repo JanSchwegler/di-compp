@@ -3,6 +3,8 @@
 let screenWidth = document.documentElement.clientWidth || window.innerWidth;
 let screenHeight = document.documentElement.clientHeight || window.innerHeight;
 let scrollPos = window.scrollY || window.pageYOffset;
+// let - bg noise
+let bgNoiseCanvas;
 // let - navigation
 let navElements;
 let navSelector;
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     imgUnknownLife.onload = unknownLifeimageLoaded;
 
     // get elements
+    bgNoiseCanvas = document.querySelectorAll(".bgNoise");
     navElements = document.querySelector("nav").querySelectorAll(":nth-child(-n+3)");
     navSelector = document.getElementById("selection");
     sections = document.querySelectorAll(".nav-section");
@@ -56,7 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // function calls
     startup();
+    //resizeCanvas();
+    //updateNoise();
     setTimeout(setNavSelection, 100); // Timeout needed to get correct width
+    setTimeout(setNavSelection, 500); // Timeout needed to get correct width
     initialButtonUnknownLife();
     initialCanvas();
 });
@@ -68,6 +74,7 @@ window.addEventListener("resize", function() {
     screenHeight = document.documentElement.clientHeight || window.innerHeight;
 
     // function calls
+    //resizeCanvas();
     setNavSelection();
     initialCanvas();
 });
@@ -85,6 +92,40 @@ window.addEventListener("scroll", function() {
 function startup() {
     // show nav selection
     document.getElementById("selection").style.opacity = "1";
+}
+
+// function - bg noise
+function resizeCanvas() {
+    bgNoiseCanvas.forEach(function(canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+function generateNoise() {
+    bgNoiseCanvas.forEach(function(canvas) {
+        let ctx = canvas.getContext("2d");
+        let width = canvas.width;
+        let height = canvas.height;
+        let imageData = ctx.createImageData(width, height);
+        let buffer = new Uint32Array(imageData.data.buffer);
+
+        for (let i = 0; i < buffer.length; i++) {
+            let value = Math.random() < 0.5 ? 0 : 1; // Generate 0 or 1
+            let color = value * 255; // Convert 1 to 255, 0 remains 0
+            buffer[i] = (255 << 24) | // alpha
+                        (color << 16) | // red
+                        (color << 8) |  // green
+                        (color);        // blue
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+    });
+}
+
+function updateNoise() {
+    generateNoise();
+    requestAnimationFrame(updateNoise);
 }
 
 // function - navigation

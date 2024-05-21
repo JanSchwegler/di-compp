@@ -13,7 +13,7 @@
 
 /* Colors */
 :root {
-    --background: hsl(120, 10%, 10%);
+    --background: rgb(23, 28, 23);
     --background-light: hsl(120, 3%, 20%);
     --font: hsl(120, 5%, 75%);
     --font-light: hsl(120, 3%, 60%);
@@ -63,6 +63,7 @@ h1, h2 {
 /* General */
 body {
     background-color: var(--background);
+    overflow-x: hidden;
 }
 
 section {
@@ -71,18 +72,32 @@ section {
     padding: 50px 5vw;
 }
 
-.bgNoise {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+#bgNoiseContainer {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.05;
-    filter: blur(30px);
+    width: 500px;
+    height: 500px;
     z-index: -1;
-    display: none;
-    transition: 0.5s opacity ease-in-out;
+    transition: 1s opacity ease-in-out;
+    pointer-events: none;
+    opacity: 0;
+}
+
+#bgNoise {
+    width: 100%;
+    height: 100%;
+    filter: blur(1px);
+    padding: 2px;
+}
+
+#bgNoiseContainer img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 /* Navigation */

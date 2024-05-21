@@ -4,6 +4,7 @@ let screenWidth = document.documentElement.clientWidth || window.innerWidth;
 let screenHeight = document.documentElement.clientHeight || window.innerHeight;
 let scrollPos = window.scrollY || window.pageYOffset;
 // let - bg noise
+let bgNoiseContainer;
 let bgNoiseCanvas;
 // let - navigation
 let navElements;
@@ -36,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
     imgUnknownLife.onload = unknownLifeimageLoaded;
 
     // get elements
-    bgNoiseCanvas = document.querySelectorAll(".bgNoise");
+    bgNoiseContainer = document.getElementById("bgNoiseContainer");
+    bgNoiseCanvas = document.getElementById("bgNoise");
     navElements = document.querySelector("nav").querySelectorAll(":nth-child(-n+3)");
     navSelector = document.getElementById("selection");
     sections = document.querySelectorAll(".nav-section");
@@ -53,14 +55,16 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener("mouseenter", handleNavHover);
         element.addEventListener("mouseleave", setNavSelection);
     });
+    document.addEventListener('mouseenter', mouseBackgroundNoiseEnter);
+    document.addEventListener('mousemove', mouseBackgroundNoiseMove);
+    document.addEventListener('mouseleave', mouseBackgroundNoiseLeave);
     sectionUnknownLife.addEventListener('mousemove', unknownLifeMouseMove);
     sectionUnknownLife.addEventListener('mouseleave', unknownLifeMouseLeave);
     sectionUnknownLife.addEventListener('click', unknownLifeClickHandler);
 
     // function calls
     startup();
-    //resizeCanvas();
-    //updateNoise();
+    updateNoise();
     setTimeout(setNavSelection, 100); // Timeout needed to get correct width
     setTimeout(setNavSelection, 500); // Timeout needed to get correct width
     initialButtonUnknownLife();
@@ -74,7 +78,6 @@ window.addEventListener("resize", function() {
     screenHeight = document.documentElement.clientHeight || window.innerHeight;
 
     // function calls
-    //resizeCanvas();
     setNavSelection();
     initialCanvas();
 });
@@ -95,32 +98,38 @@ function startup() {
 }
 
 // function - bg noise
-function resizeCanvas() {
-    bgNoiseCanvas.forEach(function(canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+function mouseBackgroundNoiseEnter() {
+    bgNoiseContainer.style.opacity = "0.15";
+}
+
+function mouseBackgroundNoiseMove(event) {
+    let mouseX = event.clientX - (bgNoiseContainer.getBoundingClientRect().width / 2);
+    let mouseY = (event.clientY + window.scrollY) - (bgNoiseContainer.getBoundingClientRect().height / 2);
+    bgNoiseContainer.style.left = mouseX + "px";
+    bgNoiseContainer.style.top = mouseY + "px";
+}
+
+function mouseBackgroundNoiseLeave() {
+    bgNoiseContainer.style.opacity = "0";
 }
 
 function generateNoise() {
-    bgNoiseCanvas.forEach(function(canvas) {
-        let ctx = canvas.getContext("2d");
-        let width = canvas.width;
-        let height = canvas.height;
-        let imageData = ctx.createImageData(width, height);
-        let buffer = new Uint32Array(imageData.data.buffer);
+    let ctx = bgNoiseCanvas.getContext("2d");
+    let width = bgNoiseCanvas.width;
+    let height = bgNoiseCanvas.height;
+    let imageData = ctx.createImageData(width, height);
+    let buffer = new Uint32Array(imageData.data.buffer);
 
-        for (let i = 0; i < buffer.length; i++) {
-            let value = Math.random() < 0.5 ? 0 : 1; // Generate 0 or 1
-            let color = value * 255; // Convert 1 to 255, 0 remains 0
-            buffer[i] = (255 << 24) | // alpha
-                        (color << 16) | // red
-                        (color << 8) |  // green
-                        (color);        // blue
-        }
+    for (let i = 0; i < buffer.length; i++) {
+        let value = Math.random() < 0.5 ? 0 : 1; // Generate 0 or 1
+        let color = value * 255; // Convert 1 to 255, 0 remains 0
+        buffer[i] = (255 << 24) | // alpha
+                    (color << 16) | // red
+                    (color << 8) |  // green
+                    (color);        // blue
+    }
         
-        ctx.putImageData(imageData, 0, 0);
-    });
+    ctx.putImageData(imageData, 0, 0);
 }
 
 function updateNoise() {

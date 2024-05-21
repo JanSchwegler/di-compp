@@ -222,10 +222,13 @@ section#unknown-life #button-generate {
     padding: 10px 20px 12px;
     border-radius: 22px;
     display: inline-block;
-    width: auto;
+    text-align: center;
+    width: 100%;
+    max-width: calc(100% - 100px);
     color: var(--background);
     transition: opacity 0.4s ease-in-out;
     pointer-events: none;
+    margin-top: 30px;
 }
 
 footer {
@@ -240,4 +243,23 @@ footer {
 
 footer p {
     color: var(--font-light);
+}
+
+@media screen and (max-width: 767px) {
+    nav div {
+        font-size: 0.9rem;
+    }
+
+    section#unknown-life > div {
+        flex-direction: column;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    footer p {
+        text-align: center;
+    }
 }

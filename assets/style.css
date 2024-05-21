@@ -63,6 +63,7 @@ h1, h2 {
 /* General */
 body {
     background-color: var(--background);
+    max-width: 100vw;
     overflow-x: hidden;
 }
 
@@ -224,7 +225,6 @@ section#unknown-life #button-generate {
     display: inline-block;
     text-align: center;
     width: 100%;
-    max-width: calc(100% - 100px);
     color: var(--background);
     transition: opacity 0.4s ease-in-out;
     pointer-events: none;
@@ -250,8 +250,21 @@ footer p {
         font-size: 0.9rem;
     }
 
+    section p.center-paragraph {
+        font-size: 0.9rem;
+        padding: 0 0 80px;
+    }
+
     section#unknown-life > div {
         flex-direction: column;
+    }
+
+    section#unknown-life div #canvas-container {
+        width: 100%;
+    }
+
+    section#unknown-life > div > div:not(#canvas-container) {
+        width: 100%;
     }
 
     footer {

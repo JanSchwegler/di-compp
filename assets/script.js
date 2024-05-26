@@ -250,7 +250,7 @@ function unknownLifeClickHandler() {
   
     createdImagesUnknownLife.push(randomNumber);
     
-    if (createdImagesUnknownLife.length > 10) {
+    if (createdImagesUnknownLife.length > 30) {
         createdImagesUnknownLife.shift();
     }
 

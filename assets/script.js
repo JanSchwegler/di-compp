@@ -4,6 +4,7 @@ let screenWidth = document.documentElement.clientWidth || window.innerWidth;
 let screenHeight = document.documentElement.clientHeight || window.innerHeight;
 let scrollPos = window.scrollY || window.pageYOffset;
 // let - bg noise
+let mouseDownBool = false;
 let bgNoiseContainer;
 let bgNoiseCanvas;
 // let - navigation
@@ -17,6 +18,7 @@ let navScrolling = false;
 let sections;
 // let - unknown life
 let sectionUnknownLife;
+let buttonUnknownLifeInitialised = false;
 let buttonUnknownLife;
 let dataUnknownLife;
 let createdImagesUnknownLife = [];
@@ -55,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener("mouseenter", handleNavHover);
         element.addEventListener("mouseleave", setNavSelection);
     });
+    document.addEventListener("mousedown", mouseDown);
+    document.addEventListener("mouseup", mouseUp);
     document.addEventListener('mouseenter', mouseBackgroundNoiseEnter);
     document.addEventListener('mousemove', mouseBackgroundNoiseMove);
     document.addEventListener('mouseleave', mouseBackgroundNoiseLeave);
@@ -64,10 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // function calls
     startup();
+    resizeCanvas();
     updateNoise();
     setTimeout(setNavSelection, 100); // Timeout needed to get correct width
     setTimeout(setNavSelection, 500); // Timeout needed to get correct width
-    initialButtonUnknownLife();
     initialCanvas();
 });
 
@@ -97,9 +101,22 @@ function startup() {
     document.getElementById("selection").style.opacity = "1";
 }
 
+function mouseDown() {
+    mouseDownBool = true;
+}
+
+function mouseUp() {
+    mouseDownBool = false;
+}
+
 // function - bg noise
+function resizeCanvas() {
+    bgNoiseCanvas.width = bgNoiseContainer.getBoundingClientRect().width;
+    bgNoiseCanvas.height = bgNoiseContainer.getBoundingClientRect().height;
+}
+
 function mouseBackgroundNoiseEnter() {
-    bgNoiseContainer.style.opacity = "0.15";
+    bgNoiseContainer.style.opacity = "0.1";
 }
 
 function mouseBackgroundNoiseMove(event) {
@@ -107,6 +124,11 @@ function mouseBackgroundNoiseMove(event) {
     let mouseY = (event.clientY + window.scrollY) - (bgNoiseContainer.getBoundingClientRect().height / 2);
     bgNoiseContainer.style.left = mouseX + "px";
     bgNoiseContainer.style.top = mouseY + "px";
+
+    if (!buttonUnknownLifeInitialised) {
+        initialButtonUnknownLife();
+        buttonUnknownLifeInitialised = true;
+    }
 }
 
 function mouseBackgroundNoiseLeave() {
@@ -128,8 +150,10 @@ function generateNoise() {
                     (color << 8) |  // green
                     (color);        // blue
     }
-        
-    ctx.putImageData(imageData, 0, 0);
+
+    if(!mouseDownBool) {
+        ctx.putImageData(imageData, 0, 0);
+    }
 }
 
 function updateNoise() {
@@ -208,9 +232,12 @@ function initialCanvas() {
 
 function initialButtonUnknownLife() {
     buttonUnknownLife.style.opacity = "0";
-    buttonUnknownLife.style.position = "absolute";
-    buttonUnknownLife.style.top = "0";
-    buttonUnknownLife.style.left = "0";
+    setTimeout(() => {
+        buttonUnknownLife.style.width = "auto";
+        buttonUnknownLife.style.position = "absolute";
+        buttonUnknownLife.style.top = "0";
+        buttonUnknownLife.style.left = "0";
+    }, 400);
 }
 
 function unknownLifeMouseMove(event) {

@@ -63,6 +63,7 @@ h1, h2 {
 /* General */
 body {
     background-color: var(--background);
+    max-width: 100vw;
     overflow-x: hidden;
 }
 
@@ -222,10 +223,12 @@ section#unknown-life #button-generate {
     padding: 10px 20px 12px;
     border-radius: 22px;
     display: inline-block;
-    width: auto;
+    text-align: center;
+    width: 100%;
     color: var(--background);
     transition: opacity 0.4s ease-in-out;
     pointer-events: none;
+    margin-top: 30px;
 }
 
 footer {
@@ -240,4 +243,36 @@ footer {
 
 footer p {
     color: var(--font-light);
+}
+
+@media screen and (max-width: 767px) {
+    nav div {
+        font-size: 0.9rem;
+    }
+
+    section p.center-paragraph {
+        font-size: 0.9rem;
+        padding: 0 0 80px;
+    }
+
+    section#unknown-life > div {
+        flex-direction: column;
+    }
+
+    section#unknown-life div #canvas-container {
+        width: 100%;
+    }
+
+    section#unknown-life > div > div:not(#canvas-container) {
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    footer p {
+        text-align: center;
+    }
 }

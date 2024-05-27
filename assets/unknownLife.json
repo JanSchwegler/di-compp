@@ -103,9 +103,8 @@
       "text": "Creature with a really long even body, 50 short legs. it lives on plants in a forest. full body",
       "image": "image_026.png"
     },
-    /* ---------------------------------- */
     {
-      "text": "A full-body depiction of a Creature characterized by an elongated, narrow body. It has no limbs and features a small head with two prominent eyes. The texture of its body is smooth, and it moves with a sinuous grace",
+      "text": "Creature with scales, long neck, short horns, tiny dark eyes, claws, long white feathers, long tale standing up. it lives in a dry rocky landscape. full body",
       "image": "image_027.png"
     },
     {
@@ -423,10 +422,6 @@
     {
       "text": "Creature with colorful scales, long neck, short horns, tiny dark eyes, claws, long feathers, tale standing up. it lives in a dry rocky landscape. full body",
       "image": "image_106.png"
-    },
-    {
-      "text": "Creature with scales, long neck, short horns, tiny dark eyes, claws, long white feathers, long tale standing up. it lives in a dry rocky landscape. full body",
-      "image": "image_107.png"
     }
   ]
   

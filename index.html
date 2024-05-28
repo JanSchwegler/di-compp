@@ -12,18 +12,22 @@
         <canvas id="bgNoise"></canvas>
         <img src="assets/images/mouseNoiseFade.webp" alt="background noise blur">
     </div>
+
     <nav>
         <div>home</div>
         <div>unknown life</div>
         <div>about the project</div>
         <div id="selection"></div>
     </nav>
+
     <section class="nav-section">
         <h1>unknown life</h1>
     </section>
+
     <section>
         <p class="center-paragraph">Unknown Life is an exploratory AI project. Challenged to visualise entirely new creatures, this project explores Fooocus ability to generate unknown life forms beyond its training data and offering insights into it’s understanding.</p>
     </section>
+
     <section id="unknown-life" class="nav-section">
         <h2>unknown life</h2>
         <div>
@@ -37,32 +41,113 @@
         </div>
         <div id="button-generate">click to generate a creature</div>
     </section>
+
     <section id="about" class="nav-section">
         <article>
             <div class="about-mark">1</div>
             <div class="about-text">
                 <h2>about the project</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquam impedit voluptas officiis tenetur accusamus inventore iure, aut ullam, quam numquam alias odio veritatis assumenda accusantium harum quaerat odit dolores.</p>
+                
+                <p>The project “unknown life” is an explorative work to explore stable diffusion’s capabilities. During the project I challenged today's open source image generation to create images beyond its training data, exploring the boundaries of its understanding and the resulting images.</p>
+                
+                <p>During the project, I challenged the AI to generate photorealistic images of fictional creatures, or in other words, animals not found on Earth. Since today's AIs are primarily trained on photos of real animals and human drawings, this task required the AI to adapt and maintain a photorealistic style while creating something entirely new. During the project I used only text prompts, describing the animals based on their characteristics without specifically naming any. This pushed the AI to interpret and visualise unique features beyond its training data.</p>
+                
+                <p>I asked myself following questions at the beginning of the project:</p>
+                
+                <ul>
+                    <li>How specific can I describe the images, the characteristics of the animal and how many details can the AI include?</li>
+                    <li>What details are more challenging for the AI to include?</li>
+                    <li>How consistent is the AI with the generated images?</li>
+                    <li>Can I define specific surroundings without losing details of the creature?</li>
+                </ul>
+                
+                <p>These questions guided me throughout the entire project. In search of the answers, I wrote numerous prompts, generated images and gathered experience.</p>
+                
+                <p>Due to limited time and resources, I couldn't explore everything. Therefore, I defined the boundaries of my project and identified aspects I wasn't testing:</p>
+                
+                <ul>
+                    <li>I didn't use more than text prompts.</li>
+                    <li>I didn't include multiple creatures in one image.</li>
+                    <li>I didn't explore different styles.</li>
+                    <li>I didn't experiment with different points of view.</li>
+                    <li>I didn't experiment  with the colour scheme.</li>
+                    <li>I didn't compare different models and LoRAs.</li>
+                    <li>I didn't vary settings, quality, and image sizes.</li>
+                    <li>I didn't create my own dataset or train models.</li>
+                </ul>
             </div>
         </article>
         <article>
             <div class="about-mark">2</div>
             <div class="about-text">
-                <h2>about the project</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquam impedit voluptas officiis tenetur accusamus inventore iure, aut ullam, quam numquam alias odio veritatis assumenda accusantium harum quaerat odit dolores.</p>
+                <h2>the model?</h2>
+                <p>Text</p>
             </div>
         </article>
         <article>
             <div class="about-mark">3</div>
             <div class="about-text">
-                <h2>about the project</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquam impedit voluptas officiis tenetur accusamus inventore iure, aut ullam, quam numquam alias odio veritatis assumenda accusantium harum quaerat odit dolores.</p>
+                <h2>prompting</h2>
+                
+
+                <p>Text</p>
+            </div>
+        </article>
+        <article>
+            <div class="about-mark">4</div>
+            <div class="about-text">
+                <h2>findings</h2>
+                <p>In this chapter, I will present the findings of my exploration during the project. After I generated more than one thousand images during my project, I will answer my starting questions and explain how the AI handled my challenges. Also I will point out what the AI was able to create and the limitations I faced.</p>
+                
+                <p>During my exploration I encountered several limitations of its ability to generate truly new and imaginative creatures. As I experienced when creating an image, the AI will choose something like a “base animal”. This helped the AI to understand the prompt and create the image around this base. As you can imagine, this base animal and its characteristics had a huge impact on the whole output. Depending on the chosen base animal, the AI was ignoring one or another feature of the given prompt. For example, when the base animal would be a cat, the AI was only able (with some rare exceptions) to give this cat exactly four legs. Because everything else would be wrong for the AI. Based on this behaviour and its training data, this resulted in the AI producing combinations of known elements rather than creating entirely new ones. I think Fooocus would understand the given prompt but it is trained too much to recreate realistic animals, so it lacks the ability of creating new creatures it has never seen.</p>
+                
+                <p>Furthermore, when specifying numerical features, such as the number of limbs or eyes, the AI frequently disregarded these details. The dominant influence of the base animal typically overpowered these instructions, resulting in a final image that adhered more closely to the base form than to the specified modifications.</p>
+                
+                <p>Another limitation was the AI's reliance on a fairly small set of base animals. I had a really hard time getting the AI to create a certain type of animal without naming it. For example: snakes, monkeys and even for horses the AI gave me most of the time deers and goats. The model most of the time used the same approximately ten base animals, showing to fall back on the most likely animals and not incorporate more exotic or diverse bases for creating new creatures. This constraint further hindered the variety and uniqueness of the generated images.</p>
+                
+                <p>Despite these limitations, the AI was surprisingly consistent. However, even slight changes in the prompt sometimes the used base animal altered, leading to significant changes in the final image. This indicated that while the model could reliably reproduce certain images, its sensitivity to prompt variations posed a challenge in achieving desired outcomes.</p>
+
+                <p>For the questions I asked myself at the beginning of my project i found following answers:</p>
+
+                <p class="insert">How specific can I describe the images and how many details can the AI include?<br>
+                There is no simple answer to this question because it strongly differs between images. Generally I could include a super specific and detailed description and normally this wouldn’t be any problem. The Problem started with the AI’s lack of including certain details to certain base animals or other details. This means that often details would be excluded or disappear in the generation process when the AI was trying to match its training data.</p>
+
+                <p class="insert">What details are more challenging for the AI to include?<br>
+                As mentioned before, the numbers were most of the time ignored. For example it was really hard to change the number of legs, arms, ears, mouth, eyes, horns, fins, tales, etc. For the skin, I found smooth skin without scales like an eel or sheds difficult to include. Specific details like, long or hanging bunny ears, specific horns, like only one or soft giraffe horns and also climbing animals were really difficult to get.</p>
+
+                <p class="insert">How consistent is the AI with the generated images?<br>
+                The model was surprisingly consistent. Most of the time the AI took the same turns and included the same details with the same overall look. Also little changes on the prompt were included specifically. As described there are just big jumps between what I call the base animals. So if the AI happens to change the base animal on just a small detail in the prompt, it generates a completely different animal.</p>
+                
+                <p class="insert">Can I define specific surroundings without losing details of the creature?<br>
+                From my experience, I did not find myself losing details on the animal, when specifying the surrounding environment. However the surroundings did have an impact on the created animal. So on a complete change of the surrounding, there was a change, of the animal being changed. This was, because the AI just knows some animals and details in some environment. For example, fur in water or in a hot desert, is unlikely for the AI to generate.</p>
+                
+                <p>In summary, Fooocus demonstrated a notable ability to generate consistent images based on given prompts, but it also revealed several significant limitations. The AI heavily relied on base animals, which constrained its creativity and led to the combination of familiar elements rather than the creation of entirely new ones. Numerical specifications and certain details were often ignored, and the model struggled to incorporate more exotic or diverse bases.</p>
+            </div>
+        </article>
+        <article>
+            <div class="about-mark">5</div>
+            <div class="about-text">
+                <h2>resources</h2>
+                <p>In this chapter, I would like to acknowledge the used tools and resources that made this project possible and were crucial for the development of "Unknown Life":</p>
+                <ul>
+                    <li><a target="_blank" href="https://github.com/lllyasviel/Fooocus">Fooocus: <span>https://github.com/lllyasviel/Fooocus</span></a></li>
+                    <li><a target="_blank" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">WebUI: <span>https://github.com/AUTOMATIC1111/stable-diffusion-webui</span></a></li>
+                    <li><a target="_blank" href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/tree/main">SDXL 1.0: <span>https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/tree/main</span></a></li>
+                    <li><a target="_blank" href="https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/tree/main">SDXL 1.0 Refiner: <span>https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/tree/main</span></a></li>
+                    <li><a target="_blank" href="https://huggingface.co/runwayml/stable-diffusion-v1-5">SD 1.5: <span>https://huggingface.co/runwayml/stable-diffusion-v1-5</span></a></li>
+                    <li><a target="_blank" href="https://civitai.com/models/169868/thinkdiffusionxl">LoRA, ThinkDiffusionXL 1.0: <span>https://civitai.com/models/169868/thinkdiffusionxl</span></a></li>
+                    <li><a target="_blank" href="https://civitai.com/models/241415/picxreal?modelVersionId=272376">LoRA, PicX real 1.0: <span>https://civitai.com/models/241415/picxreal?modelVersionId=272376</span></a></li>
+                    <li><a target="_blank" href="https://www.anaconda.com/"><span>https://www.anaconda.com/</span></a></li>
+                    <li><a target="_blank" href="https://www.docker.com/"><span>https://www.docker.com/</span></a></li>
+                    <li><a target="_blank" href="https://chatgpt.com/">ChatGPT (free to use ), assisting on translations, wordings and grammatical corrections: <span>https://chatgpt.com/</span></a></li>
+                </ul>
             </div>
         </article>
     </section>
+
     <footer>
         <p>© 2024 Jan Schwegler</p>
-        <p>unknown life | modul: Computation Perception Extended</p>
+        <p>unknown life | module: Computation Perception Extended</p>
     </footer>
 </body>
 </html>

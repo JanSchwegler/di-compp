@@ -254,7 +254,7 @@ section#unknown-life #button-generate {
 
 #about article .about-mark {
     position: sticky;
-    top: 30px;
+    top: 150px;
     width: 80px;
     text-align: center;
     font-family: Lexend Peta, sans-serif;
@@ -269,8 +269,21 @@ section#unknown-life #button-generate {
     padding-bottom: 40px;
 }
 
-#about article.about-mark p {
-    
+#about article .about-text p:not(:last-child), #about article .about-text ul:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+#about article .about-text p.insert, #about article .about-text ul {
+    margin-left: 50px;
+}
+
+#about article .about-text li a span {
+    color: var(--font-light);
+    text-decoration: underline;
+}
+
+#about article .about-text li a:hover span {
+    color: var(--font);
 }
 
 footer {

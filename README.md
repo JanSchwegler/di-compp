@@ -1,5 +1,21 @@
+# Projectdocumentation 
 “unknown life” is a project I developed during the Computation Perception Extended (COMPP) FS24 module. At the start of the module I didn’t have much experience with AI’s. I did know and use ChatGPT, Adobe Firefly and Gemini from Google. During the module, I was introduced to the large world of AI. I explored various types of AI, learning about their mechanisms, construction, how they learn and even how to train my own model. In this journey, I got to know and explore many different models.
 This documentation summarises my concept, my methods as well as my learnings for future reference.
+
+# Table of Contents
+- [Projectdocumentation](#projectdocumentation)
+- [Table of Contents](#table-of-contents)
+- [Projectdescription](#projectdescription)
+- [Installation](#installation)
+  - [WebUI](#webui)
+  - [LoRAs](#loras)
+  - [Conda](#conda)
+  - [Fooocus](#fooocus)
+- [The Model](#the-model)
+- [Prompting](#prompting)
+- [Findings](#findings)
+- [Resources](#resources)
+
 
 # Projectdescription
 The project unknown life is an explorative work to explore stable diffusion’s capabilities. During the project I challenged today's open source image generation to create images beyond its training data, exploring the boundaries of its understanding and the resulting images.
